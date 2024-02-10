@@ -1,7 +1,6 @@
 #include <iostream>
 #include <limits>
 
-// Функція для перевірки введення числа
 double getValidInput() {
     double value;
     while (true) {
