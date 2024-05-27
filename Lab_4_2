@@ -1,0 +1,86 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        string filePath = "C:/Lab_8_OOP/Lab_8_2.txt";
+
+        try
+        {
+            string text = File.ReadAllText(filePath);       
+            char[] charArray = text.ToCharArray();        
+         
+            if (charArray.Length == 0 )
+            {                                                   
+                Console.WriteLine("The file is empty ");
+                return;
+            }
+
+            if (!ContainsLetters(charArray))
+            {
+                int digitCount = CountDigit(charArray);
+                Console.WriteLine($"The number of digits in the file (array): {digitCount}");    
+            }
+
+            int uppercaseCountArray = CountUppercaseLetters(charArray);
+            Console.WriteLine($"The number of capital letters in the file (array): {uppercaseCountArray}");
+
+            List<char> charList = new List<char>(charArray);
+            int uppercaseCountList = CountUppercaseLetters(charList);
+            Console.WriteLine($"The number of capital letters in the file (List): {uppercaseCountList}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+    static int CountUppercaseLetters(char[] charArray)
+    {
+        int count = 0;
+        foreach (char c in charArray)
+        {
+            if (char.IsUpper(c))            
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static int CountUppercaseLetters(List<char> charList)
+    {
+        int count = 0;
+        foreach (char c in charList)             
+        {                      
+            if (char.IsUpper(c))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+    static bool ContainsLetters(char[] charArray)
+    {
+        foreach (char c in charArray)
+        {                                      
+            if (char.IsLetter(c))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static int CountDigit(char[] charArray)  
+    {
+        int count = 0;
+        foreach (char c in charArray)
+        {
+            if (char.IsDigit(c))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+}
